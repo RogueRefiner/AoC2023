@@ -1,9 +1,10 @@
-FILENAME = "input.txt"
+import sys 
+import os
+sys.path.append(os.path.abspath("../"))
 
-def readInput(FILENAME: str) -> list:
-    with open(FILENAME) as f:
-        lines = f.readlines()
-    return lines
+from helper import readInput
+
+FILENAME = ["testInput.txt", "testInput2.txt", "input.txt"]
 
 def parseLine(line: list) -> tuple[list, list, list]:
     red = ([int(word[1::].split(" ")[0]) for word in line if "red" in word])
@@ -16,7 +17,7 @@ def process_line(line: str) -> list:
 
 def part1() -> int:
     indexes = []
-    lines = readInput(FILENAME)
+    lines = readInput(FILENAME[2])
     for line in lines:
         line = process_line(line)
         red, blue, green = parseLine(line)
@@ -31,7 +32,7 @@ def part1() -> int:
     return sum(indexes)
 
 def part2() -> int:
-    lines = readInput(FILENAME)
+    lines = readInput(FILENAME[2])
     sum = 0
     
     for line in lines:
