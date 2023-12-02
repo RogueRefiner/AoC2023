@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath("../"))
 
 from helper import readInput
 
-FILENAME = ["testInput.txt", "testInput2.txt", "input.txt"]
+FILENAME = ["input.txt", "testInput.txt", "testInput2.txt"]
 
 def parseLine(line: list) -> tuple[list, list, list]:
     red = ([int(word[1::].split(" ")[0]) for word in line if "red" in word])
@@ -12,31 +12,27 @@ def parseLine(line: list) -> tuple[list, list, list]:
     green = ([int(word[1::].split(" ")[0]) for word in line if "green" in word])
     return red, blue, green
 
-def process_line(line: str) -> list:
+def processLine(line: str) -> list:
     return line.strip().replace(":", ';').replace(",", ';').split(";")
 
 def part1() -> int:
     indexes = []
-    lines = readInput(FILENAME[2])
+    lines = readInput(FILENAME[0])
     for line in lines:
-        line = process_line(line)
+        line = processLine(line)
         red, blue, green = parseLine(line)
 
-        invalidRedGames = [item for item in red if item > 12]
-        invalidBlueGames = [item for item in blue if item > 14]
-        invalidGreenGames = [item for item in green if item > 13]
-
-        if (len(invalidRedGames) == 0 and len(invalidGreenGames) == 0 and len(invalidBlueGames) == 0):
+        if (max(red) <= 12 and max(blue) <= 14 and max(green) <= 13):
             indexes.append(int(line[0].split(" ")[1]))
 
     return sum(indexes)
 
 def part2() -> int:
-    lines = readInput(FILENAME[2])
+    lines = readInput(FILENAME[0])
     sum = 0
     
     for line in lines:
-        line = process_line(line)
+        line = processLine(line)
         red, blue, green = parseLine(line)
         sum += max(red) * max(green) * max(blue)
     
