@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath("../"))
 
 from helper import readInput
 
-FILENAME = ["testInput.txt", "testInput2.txt", "input.txt"]
+FILENAME = ["input.txt", "testInput.txt", "testInput2.txt"]
 
 def part1():
     pass
