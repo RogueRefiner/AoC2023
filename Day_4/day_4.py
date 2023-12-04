@@ -52,7 +52,9 @@ def part2() -> int:
 
         for numberOfCards in range(0, cards[index]): # iterate through each instance of the a card (original + all copies) 
             for cardNumberToAdd in range(1, len(winningNumbers)+1): # loop through all cards that need to be added
-                indexToAddACard = index + cardNumberToAdd # e.g. index: 3, addCardNumber: 1 add current index to a Card to next index where a card needs to be added
+                indexToAddACard = index + cardNumberToAdd # e.g. index: 3, addCardNumber: 1, indexToAddACard: 4. Add a 4 Card
+                                                          # e.g. index: 3, addCardNumber: 2, indexToAddACard: 5. Add a 5 Card etc.
+                                                          # Add index of current Card to get the next index where a card needs to be added
                 cards[indexToAddACard] += 1        
 
     # iterate through the dict and sum all cards
